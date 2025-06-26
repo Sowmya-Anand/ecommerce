@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProductList.css'; 
 import {useDispatch, useSelector} from 'react-redux';
-import {addItemToCart} from './cartSlice';
+import {addItemToCart} from './CartSlice';
 
 const ProductList = () => {
 
@@ -12,8 +12,8 @@ const ProductList = () => {
   ];
   const dispatch=useDispatch();
   const cartItems=useSelector(state => state.cart.cartItems);
-  const handleAddTocart=product=>{
-    dispatch(addItemTocart(product));
+  const handleAddToCart=product=>{
+    dispatch(addItemToCart(product));
   };
 
   return (
@@ -23,7 +23,9 @@ const ProductList = () => {
         {products.map(product=>(
             <li key='id' className='product-list-item'>
                 <span>{product.name} - ${product.price}</span>
-                <button className={`add-to-cart-btn ${cartItems.some(item=>item.id===product.id) ? 'disabled':''}`} onClick={()=>handleAddToCart(product)} disabled={cartItems.some(item=>item/id===product.id)? 'Added': 'Add to Cart'}>Add to Cart</button>
+                <button className={`add-to-cart-btn ${cartItems.some(item=>item.id===product.id) ? 'disabled':''}`} onClick={()=>handleAddToCart(product)} disabled={cartItems.some(item=>item.id===product.id)}>
+                    {cartItems.some(item=>item.id===product.id) ? 'Added': 'Add to Cart'}
+                </button>
             </li>
         ))}
       </ul>

@@ -24,16 +24,17 @@ const ShoppingCart = () => {
     <div className="shopping-cart">
       <h2 className="shopping-cart-title">Shopping Cart</h2>
       <ul className="cart-items">
-       {cartItems.map(item=>{
+       {cartItems.map(item=>(
         <li key={item.id} className='cart-item'>
             <span> {item.name} - ${item.price}</span>
             <div className='quantity-controls'>
                 <button className='quantity-control-btn' onClick={()=>handleDecreaseQuantity(item.id)}>-</button>
+                <span> {item.quantity}</span>
                 <button className='quantity-control-btn' onClick={()=>handleIncreaseQuantity(item.id)}>+</button>
             </div>
             <button className='remove-item-btn' onClick={()=>handleRemoveItem(item.id)}>Remove</button>
         </li>
-       })}
+       ))}
       </ul>
       <button className="clear-cart-btn" onClick={handleClearCart}>Clear Cart</button>
     </div>
